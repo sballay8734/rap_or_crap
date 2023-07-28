@@ -1,0 +1,26 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: var(--navy-blue);
+  width: 100%;
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 4rem;
+    padding: 0 1rem;
+    font-family: 'Cookie', cursive;
+    font-size: 2rem;
+    color: var(--gold);
+    ul {
+      list-style-type: none;
+      .nav-item {
+        cursor: pointer;
+        &:hover {
+          color: rgb(127, 108, 0);
+        }
+      }
+    }
+  }
+}

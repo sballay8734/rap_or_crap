@@ -58,15 +58,16 @@ function Casual() {
         (item) =>
           !JSON.parse(localStorage.getItem("usedLyrics")).includes(item.lyric)
       )
+      setCurrentLyric(
+        availableLyrics[Math.floor(Math.random() * availableLyrics?.length)]
+          ?.lyric
+      )
       if (availableLyrics.length === 0) {
         console.log("No more lyrics available")
         setNoAvailableLyrics(true)
         setCurrentLyric(null)
         // handle NO MORE LYRICS
       }
-      setCurrentLyric(
-        availableLyrics[Math.floor(Math.random() * availableLyrics.length)]
-      )
     }
   }
 
@@ -75,16 +76,18 @@ function Casual() {
   }, [])
 
   return (
-    <div>
+    <div className="test">
       {currentLyric}
       <button onClick={() => handleAnswerSelect(currentLyric)}>Push</button>
       {noAvailableLyrics ? (
         <div>
-          There are no more lyrics available at this time. Click here to clear
-          memory and start again.{" "}
-          <span>
+          <div>
+            There are no more lyrics available at this time. Click here to clear
+            memory and start again.{" "}
+          </div>
+          <div className="button-div">
             <button onClick={() => handleMemoryClear()}>Clear Memory</button>
-          </span>
+          </div>
         </div>
       ) : (
         ""

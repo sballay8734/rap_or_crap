@@ -10,5 +10,9 @@
     display: flex;
     gap: 1rem;
   }
-  
+}
+.no-more-lyrics {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }

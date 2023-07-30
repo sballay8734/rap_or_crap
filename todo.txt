@@ -1,5 +1,7 @@
-1. On new game click, warning box should come up ("Are you sure...")
-2. Handle what happens if there are no more lyrics
+1. On new game click, warning box should come up ("Are you sure...").
+2. Handle what happens if there are no more lyrics.
 3. Add button to clear local storage.
 4. Format Lyrics to be bigger and have quotes.
 5. Hide push button when no more lyrics exist.
+6. Add score.
+7. Score will have to be kept in local storage also.

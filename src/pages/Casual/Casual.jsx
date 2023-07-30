@@ -2,12 +2,15 @@ import "./casual.scss"
 // import { LyricsContext } from "../../context/LyricsContext"
 import { useEffect, useState } from "react"
 import lyrics from "../../data/lyrics"
+import ResultModal from "../../components/ResultModal/ResultModal"
+import { createPortal } from "react-dom"
 
 function Casual() {
   const [currentLyric, setCurrentLyric] = useState("")
-  // const [correctAnswers, setCorrectAnswers] = useState(0)
-  // const [incorrectAnswers, setIncorrectAnswers] = useState(0)
+  const [correctAnswers, setCorrectAnswers] = useState(0)
+  const [incorrectAnswers, setIncorrectAnswers] = useState(0)
   const [noAvailableLyrics, setNoAvailableLyrics] = useState(false)
+  const [modalIsShown, setModalIsShown] = useState(false)
 
   function pushToLocaleStorage(currentLyric) {
     let usedLyrics = JSON.parse(localStorage.getItem("usedLyrics"))
@@ -29,10 +32,22 @@ function Casual() {
     handleInitialLoad()
   }
 
-  function handleAnswerSelect(currentLyric) {
+  function handleAnswerSelect(currentLyric, answer) {
     pushToLocaleStorage(currentLyric)
-    // show result modal
 
+    // modal logic
+    let currentLyricObject = lyrics.filter((l) => l.lyric === currentLyric)
+    if (currentLyricObject[0].rap === answer) {
+      setCorrectAnswers((prev) => prev + 1)
+      // show modal
+      console.log("You got it right", answer, currentLyricObject[0].rap)
+    } else {
+      setIncorrectAnswers((prev) => prev + 1)
+      // show modal
+      console.log("WRONG", answer, currentLyricObject[0].rap)
+    }
+
+    // update available lyrics
     let availableLyrics = lyrics.filter(
       (item) =>
         !JSON.parse(localStorage.getItem("usedLyrics")).includes(item.lyric)
@@ -77,8 +92,32 @@ function Casual() {
 
   return (
     <div className="test">
-      {currentLyric}
-      <button onClick={() => handleAnswerSelect(currentLyric)}>Push</button>
+      <div className="lyric">{currentLyric}</div>
+      <div className="answer-buttons">
+        <button
+          onClick={() => handleAnswerSelect(currentLyric, true)}
+          className="rap btn"
+        >
+          Rap
+        </button>
+        <button
+          onClick={() => handleAnswerSelect(currentLyric, false)}
+          className="crap btn"
+        >
+          Crap
+        </button>
+      </div>
+      <div className="scoreboard">
+        Correct: {correctAnswers} Incorrect: {incorrectAnswers}
+      </div>
+      <ResultModal />
+      {modalIsShown
+        ? createPortal(
+            <ResultModal />,
+            document.querySelector(".modal-container")
+          )
+        : ""}
+
       {noAvailableLyrics ? (
         <div>
           <div>

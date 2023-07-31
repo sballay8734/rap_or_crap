@@ -2,4 +2,4 @@
 4. Format Lyrics to be bigger and have quotes.
 6. Add score.
 7. Score will have to be kept in local storage also.
-8. HOW TO PASS IN ANSWER TO MODAL? (lyric is easy)
+8. MODAL LYRIC IS CHANGING AFTER BUTTON PRESS (This is not good)

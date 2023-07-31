@@ -11,6 +11,7 @@ function Casual() {
   const [incorrectAnswers, setIncorrectAnswers] = useState(0)
   const [noAvailableLyrics, setNoAvailableLyrics] = useState(false)
   const [modalIsShown, setModalIsShown] = useState(false)
+  const [result, setResult] = useState(null)
 
   function pushToLocaleStorage(currentLyric) {
     let usedLyrics = JSON.parse(localStorage.getItem("usedLyrics"))
@@ -33,17 +34,17 @@ function Casual() {
   }
 
   function handleAnswerSelect(currentLyric, answer) {
-    pushToLocaleStorage(currentLyric.lyric)
-
     // modal logic
     if (currentLyric.rap === answer) {
       setCorrectAnswers((prev) => prev + 1)
-      // show modal
-      console.log("You got it right", answer, currentLyric.rap)
+      setResult("CORRECT")
+      setModalIsShown(true)
+      // console.log("You got it right", answer, currentLyric.rap)
     } else {
       setIncorrectAnswers((prev) => prev + 1)
-      // show modal
-      console.log("WRONG", answer, currentLyric.rap)
+      setResult("WRONG")
+      setModalIsShown(true)
+      // console.log("WRONG", answer, currentLyric.rap)
     }
 
     // update available lyrics
@@ -61,6 +62,8 @@ function Casual() {
         availableLyrics[Math.floor(Math.random() * availableLyrics.length)]
       )
     }
+
+    pushToLocaleStorage(currentLyric.lyric)
   }
 
   function handleInitialLoad() {
@@ -111,7 +114,11 @@ function Casual() {
           {/* <ResultModal /> */}
           {modalIsShown
             ? createPortal(
-                <ResultModal />,
+                <ResultModal
+                  currentLyric={currentLyric}
+                  result={result}
+                  setModalIsShown={setModalIsShown}
+                />,
                 document.querySelector(".modal-container")
               )
             : ""}

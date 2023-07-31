@@ -2,27 +2,38 @@
   position: fixed;
   top: 0;
   left: 0;
-  z-index: -1;
+  z-index: 1;
+  // width: 100vw;
+  // height: 100vh;
+}
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
   width: 100vw;
   height: 100vh;
 }
-
 .opacity-layer {
   position: absolute;
   top: 0;
   left: 0;
   height: 100vh;
   width: 100vw;
+  z-index: 1;
   background-color: black;
   opacity: 0.5;
 }
 .modal-content {
   background-color: white;
+  color: black;
   height: 200px;
   width: 400px;
+  z-index: 1;
   border-radius: 5px;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  padding: 1rem;
 }

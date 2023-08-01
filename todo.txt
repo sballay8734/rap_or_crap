@@ -3,3 +3,4 @@
 6. Add score.
 7. Score will have to be kept in local storage also.
 8. MODAL LYRIC IS CHANGING AFTER BUTTON PRESS (This is not good)
+    - NEXT BUTTON ON MODAL SHOULD BE THE THING CHANGING THE LYRIC

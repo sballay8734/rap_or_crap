@@ -50,7 +50,7 @@ function Casual() {
     // update available lyrics
     let availableLyrics = lyrics.filter(
       (item) =>
-        !JSON.parse(localStorage.getItem("usedLyrics")).includes(item.lyric)
+        !JSON.parse(localStorage.getItem("usedLyrics"))?.includes(item.lyric)
     )
     if (availableLyrics.length === 0) {
       console.log("No more lyrics available")

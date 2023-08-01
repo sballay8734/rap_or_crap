@@ -13,20 +13,6 @@ function Casual() {
   const [modalIsShown, setModalIsShown] = useState(false)
   const [result, setResult] = useState(null)
 
-  function pushToLocaleStorage(currentLyric) {
-    let usedLyrics = JSON.parse(localStorage.getItem("usedLyrics"))
-    if (noAvailableLyrics) return
-
-    if (usedLyrics === null) {
-      let array = [currentLyric]
-      localStorage.setItem("usedLyrics", JSON.stringify(array))
-    } else {
-      let updatedLyrics = [...usedLyrics, currentLyric]
-      localStorage.setItem("usedLyrics", JSON.stringify(updatedLyrics))
-    }
-    console.log(localStorage.getItem("usedLyrics"))
-  }
-
   function handleMemoryClear() {
     localStorage.clear()
     setNoAvailableLyrics(false)
@@ -39,50 +25,17 @@ function Casual() {
       setCorrectAnswers((prev) => prev + 1)
       setResult("CORRECT")
       setModalIsShown(true)
-      // console.log("You got it right", answer, currentLyric.rap)
+      console.log("You got it right", answer, currentLyric.rap)
     } else {
       setIncorrectAnswers((prev) => prev + 1)
       setResult("WRONG")
       setModalIsShown(true)
-      // console.log("WRONG", answer, currentLyric.rap)
+      console.log("WRONG", answer, currentLyric.rap)
     }
-
-    // update available lyrics
-    let availableLyrics = lyrics.filter(
-      (item) =>
-        !JSON.parse(localStorage.getItem("usedLyrics"))?.includes(item.lyric)
-    )
-    if (availableLyrics.length === 0) {
-      console.log("No more lyrics available")
-      setNoAvailableLyrics(true)
-      setCurrentLyric({ lyric: "No more lyrics available" })
-      // handle NO MORE LYRICS
-    } else {
-      setCurrentLyric(
-        availableLyrics[Math.floor(Math.random() * availableLyrics.length)]
-      )
-    }
-
-    pushToLocaleStorage(currentLyric.lyric)
   }
 
   function handleInitialLoad() {
-    if (!localStorage.getItem("usedLyrics")) {
-      setCurrentLyric(lyrics[Math.floor(Math.random() * lyrics.length)])
-    } else {
-      let availableLyrics = lyrics.filter(
-        (item) =>
-          !JSON.parse(localStorage.getItem("usedLyrics")).includes(item.lyric)
-      )
-      setCurrentLyric(
-        availableLyrics[Math.floor(Math.random() * availableLyrics?.length)]
-      )
-      if (availableLyrics.length === 0) {
-        setNoAvailableLyrics(true)
-        setCurrentLyric({ lyric: "No more lyrics available" })
-        // handle NO MORE LYRICS
-      }
-    }
+    setCurrentLyric(lyrics[Math.floor(Math.random() * lyrics.length)])
   }
 
   useEffect(() => {

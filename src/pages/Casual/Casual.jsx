@@ -4,14 +4,16 @@ import { useEffect, useState } from "react"
 import lyrics from "../../data/lyrics"
 import ResultModal from "../../components/ResultModal/ResultModal"
 import { createPortal } from "react-dom"
+import useLyrics from "../../hooks/useLyrics"
 
 function Casual() {
   const [currentLyric, setCurrentLyric] = useState("")
-  const [correctAnswers, setCorrectAnswers] = useState(0)
-  const [incorrectAnswers, setIncorrectAnswers] = useState(0)
+  // const [correctAnswers, setCorrectAnswers] = useState(0)
+  // const [incorrectAnswers, setIncorrectAnswers] = useState(0)
   const [noAvailableLyrics, setNoAvailableLyrics] = useState(false)
   const [modalIsShown, setModalIsShown] = useState(false)
-  const [result, setResult] = useState(null)
+
+  const { usedLyrics, setUsedLyrics } = useLyrics()
 
   function handleMemoryClear() {
     localStorage.clear()
@@ -19,23 +21,46 @@ function Casual() {
     handleInitialLoad()
   }
 
-  function handleAnswerSelect(currentLyric, answer) {
-    // modal logic
-    if (currentLyric.rap === answer) {
-      setCorrectAnswers((prev) => prev + 1)
-      setResult("CORRECT")
-      setModalIsShown(true)
-      console.log("You got it right", answer, currentLyric.rap)
+  function handleInitialLoad() {
+    // if out of lyrics RETURN
+
+    const usedLyricsLS = JSON.parse(localStorage.getItem("usedLyrics"))
+    const currentLyricLS = JSON.parse(localStorage.getItem("currentLyric"))
+
+    if (usedLyricsLS) {
+      setUsedLyrics(usedLyricsLS)
+      setCurrentLyric(currentLyricLS || "")
     } else {
-      setIncorrectAnswers((prev) => prev + 1)
-      setResult("WRONG")
-      setModalIsShown(true)
-      console.log("WRONG", answer, currentLyric.rap)
+      let currentLyric = lyrics[Math.floor(Math.random() * lyrics.length)]
+      setCurrentLyric(currentLyric)
+      localStorage.setItem("usedLyrics", JSON.stringify([]))
+      localStorage.setItem("currentLyric", JSON.stringify(currentLyric))
+    }
+
+    if (usedLyrics.length === lyrics.length) {
+      console.log("No more lyrics")
     }
   }
 
-  function handleInitialLoad() {
-    setCurrentLyric(lyrics[Math.floor(Math.random() * lyrics.length)])
+  function handleAnswerSelect(answer, currentLyric) {
+    updateLS(currentLyric)
+    setModalIsShown(true)
+  }
+
+  function updateLS(currentLyric) {
+    let usedLyricsLS = JSON.parse(localStorage.getItem("usedLyrics"))
+    if (usedLyricsLS?.includes(currentLyric.lyric)) return
+
+    localStorage.setItem(
+      "usedLyrics",
+      JSON.stringify([...usedLyricsLS, currentLyric.lyric])
+    )
+
+    setUsedLyrics([...usedLyrics, currentLyric.lyric])
+
+    if (usedLyrics.length === lyrics.length) {
+      console.log("No more lyrics")
+    }
   }
 
   useEffect(() => {
@@ -46,31 +71,32 @@ function Casual() {
     <div className="test">
       {!noAvailableLyrics ? (
         <>
-          <div className="lyric">{currentLyric.lyric}</div>
+          <div className="lyric">
+            {currentLyric.lyric ? currentLyric.lyric : "No More Lyrics"}
+          </div>
           <div className="answer-buttons">
             <button
-              onClick={() => handleAnswerSelect(currentLyric, true)}
+              onClick={() => handleAnswerSelect(true, currentLyric)}
               className="rap btn"
             >
               Rap
             </button>
             <button
-              onClick={() => handleAnswerSelect(currentLyric, false)}
+              onClick={() => handleAnswerSelect(false, currentLyric)}
               className="crap btn"
             >
               Crap
             </button>
           </div>
-          <div className="scoreboard">
-            Correct: {correctAnswers} Incorrect: {incorrectAnswers}
-          </div>
+          <div className="scoreboard">Correct: 0 Incorrect: 0</div>
           {/* <ResultModal /> */}
           {modalIsShown
             ? createPortal(
                 <ResultModal
                   currentLyric={currentLyric}
-                  result={result}
+                  setCurrentLyric={setCurrentLyric}
                   setModalIsShown={setModalIsShown}
+                  setNoAvailableLyrics={setNoAvailableLyrics}
                 />,
                 document.querySelector(".modal-container")
               )
@@ -89,9 +115,7 @@ function Casual() {
           <div className="button-div">
             <button onClick={() => handleMemoryClear()}>Clear Memory</button>
           </div>
-          <div className="scoreboard">
-            Correct: {correctAnswers} Incorrect: {incorrectAnswers}
-          </div>
+          <div className="scoreboard">Correct: 0 Incorrect: 0</div>
         </div>
       ) : (
         ""

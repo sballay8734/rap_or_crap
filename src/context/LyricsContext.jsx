@@ -1,13 +1,16 @@
 /* eslint-disable react/prop-types */
-import { createContext } from "react"
+import { createContext, useState } from "react"
 
 const LyricsContext = createContext()
 
 function LyricsProvider({ children }) {
-  let usedLyrics = []
+  const [usedLyrics, setUsedLyrics] = useState([])
+  const [currentLyric, setCurrentLyric] = useState("")
 
   return (
-    <LyricsContext.Provider value={{ usedLyrics }}>
+    <LyricsContext.Provider
+      value={{ usedLyrics, setUsedLyrics, currentLyric, setCurrentLyric }}
+    >
       {children}
     </LyricsContext.Provider>
   )

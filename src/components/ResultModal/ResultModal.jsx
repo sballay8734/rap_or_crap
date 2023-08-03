@@ -1,17 +1,38 @@
 /* eslint-disable react/prop-types */
 import "./result-modal.scss"
+import lyrics from "../../data/lyrics"
+import useLyrics from "../../hooks/useLyrics"
 
-function ResultModal({ currentLyric, result, setModalIsShown }) {
+function ResultModal({
+  currentLyric,
+  setCurrentLyric,
+  setModalIsShown,
+  setNoAvailableLyrics
+}) {
+  const { usedLyrics } = useLyrics()
+
   function closeModal() {
-    setModalIsShown(false)
+    let newLyrics = lyrics.filter((item) => !usedLyrics.includes(item.lyric))
+    let newCurrentLyric =
+      newLyrics[Math.floor(Math.random() * newLyrics.length)]
+
+    if (newCurrentLyric === undefined) {
+      setModalIsShown(false)
+      setNoAvailableLyrics(true)
+    } else {
+      setCurrentLyric(newCurrentLyric)
+      localStorage.setItem("currentLyric", JSON.stringify(newCurrentLyric))
+      setModalIsShown(false)
+    }
+    // render next lyric
   }
 
   return (
     <div className="modal">
       <div className="opacity-layer"></div>
       <div className="modal-content">
-        {currentLyric.lyric} {result}
-        <button onClick={() => closeModal()}>Next Lyric</button>
+        {currentLyric.lyric}
+        <button onClick={closeModal}>Close / Next Lyric</button>
       </div>
     </div>
   )

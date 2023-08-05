@@ -8,8 +8,8 @@ import useLyrics from "../../hooks/useLyrics"
 
 function Casual() {
   const [currentLyric, setCurrentLyric] = useState("")
-  // const [correctAnswers, setCorrectAnswers] = useState(0)
-  // const [incorrectAnswers, setIncorrectAnswers] = useState(0)
+  const [correctAnswers, setCorrectAnswers] = useState(0)
+  const [incorrectAnswers, setIncorrectAnswers] = useState(0)
   const [noAvailableLyrics, setNoAvailableLyrics] = useState(false)
   const [modalIsShown, setModalIsShown] = useState(false)
 
@@ -24,6 +24,7 @@ function Casual() {
   function handleInitialLoad() {
     const usedLyricsLS = JSON.parse(localStorage.getItem("usedLyrics"))
     const currentLyricLS = JSON.parse(localStorage.getItem("currentLyric"))
+    const scoreboard = JSON.parse(localStorage.getItem("score"))
 
     if (usedLyricsLS?.includes(currentLyricLS.lyric)) {
       setNoAvailableLyrics(true)
@@ -38,11 +39,22 @@ function Casual() {
       setCurrentLyric(currentLyric)
       localStorage.setItem("usedLyrics", JSON.stringify([]))
       localStorage.setItem("currentLyric", JSON.stringify(currentLyric))
+      localStorage.setItem(
+        "score",
+        JSON.stringify({ correct: 0, incorrect: 0 })
+      )
     }
   }
 
   function handleAnswerSelect(answer, currentLyric) {
     updateLS(currentLyric)
+
+    if (answer === currentLyric.rap) {
+      setCorrectAnswers((prev) => prev + 1)
+    } else {
+      setIncorrectAnswers((prev) => prev + 1)
+    }
+
     setModalIsShown(true)
   }
 
@@ -83,8 +95,9 @@ function Casual() {
               Crap
             </button>
           </div>
-          <div className="scoreboard">Correct: 0 Incorrect: 0</div>
-          {/* <ResultModal /> */}
+          <div className="scoreboard">
+            Correct: {correctAnswers} Incorrect: {incorrectAnswers}
+          </div>
           {modalIsShown
             ? createPortal(
                 <ResultModal

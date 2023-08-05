@@ -74,7 +74,7 @@ const lyrics = [
   },
   {
     id: 17,
-    lyric: "You take the L out of clock, then you take the rest.",
+    lyric: "I'll take the L out of clock, then you take what's left.",
     rap: false
   },
   {

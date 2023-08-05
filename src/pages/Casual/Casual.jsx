@@ -22,10 +22,13 @@ function Casual() {
   }
 
   function handleInitialLoad() {
-    // if out of lyrics RETURN
-
     const usedLyricsLS = JSON.parse(localStorage.getItem("usedLyrics"))
     const currentLyricLS = JSON.parse(localStorage.getItem("currentLyric"))
+
+    if (usedLyricsLS?.includes(currentLyricLS.lyric)) {
+      setNoAvailableLyrics(true)
+      return
+    }
 
     if (usedLyricsLS) {
       setUsedLyrics(usedLyricsLS)
@@ -35,10 +38,6 @@ function Casual() {
       setCurrentLyric(currentLyric)
       localStorage.setItem("usedLyrics", JSON.stringify([]))
       localStorage.setItem("currentLyric", JSON.stringify(currentLyric))
-    }
-
-    if (usedLyrics.length === lyrics.length) {
-      console.log("No more lyrics")
     }
   }
 
@@ -57,10 +56,6 @@ function Casual() {
     )
 
     setUsedLyrics([...usedLyrics, currentLyric.lyric])
-
-    if (usedLyrics.length === lyrics.length) {
-      console.log("No more lyrics")
-    }
   }
 
   useEffect(() => {

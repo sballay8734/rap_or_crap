@@ -26,6 +26,11 @@ function Casual() {
     const currentLyricLS = JSON.parse(localStorage.getItem("currentLyric"))
     const scoreboard = JSON.parse(localStorage.getItem("score"))
 
+    if (scoreboard) {
+      setCorrectAnswers(scoreboard.correct)
+      setIncorrectAnswers(scoreboard.incorrect)
+    }
+
     if (usedLyricsLS?.includes(currentLyricLS.lyric)) {
       setNoAvailableLyrics(true)
       return
@@ -51,6 +56,14 @@ function Casual() {
 
     if (answer === currentLyric.rap) {
       setCorrectAnswers((prev) => prev + 1)
+      // NEED TO UPDATE CORRECT ANSWERS ONLY USING ...
+      localStorage.setItem(
+        "score",
+        JSON.stringify({
+          correct: correctAnswers,
+          incorrectAnswers: incorrectAnswers
+        })
+      )
     } else {
       setIncorrectAnswers((prev) => prev + 1)
     }

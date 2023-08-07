@@ -12,12 +12,15 @@ function Casual() {
   const [incorrectAnswers, setIncorrectAnswers] = useState(0)
   const [noAvailableLyrics, setNoAvailableLyrics] = useState(false)
   const [modalIsShown, setModalIsShown] = useState(false)
+  const [answerResult, setAnswerResult] = useState(null)
 
   const { usedLyrics, setUsedLyrics } = useLyrics()
 
   function handleMemoryClear() {
     localStorage.clear()
     setNoAvailableLyrics(false)
+    setCorrectAnswers(0)
+    setIncorrectAnswers(0)
     handleInitialLoad()
   }
 
@@ -31,7 +34,7 @@ function Casual() {
       setIncorrectAnswers(scoreboard.incorrect)
     }
 
-    if (usedLyricsLS?.includes(currentLyricLS.lyric)) {
+    if (usedLyricsLS?.includes(currentLyricLS?.lyric)) {
       setNoAvailableLyrics(true)
       return
     }
@@ -48,6 +51,7 @@ function Casual() {
         "score",
         JSON.stringify({ correct: 0, incorrect: 0 })
       )
+      console.log("run")
     }
   }
 
@@ -56,16 +60,31 @@ function Casual() {
 
     if (answer === currentLyric.rap) {
       setCorrectAnswers((prev) => prev + 1)
+      setAnswerResult(true)
       // NEED TO UPDATE CORRECT ANSWERS ONLY USING ...
+      let scoreLS = JSON.parse(localStorage.getItem("score"))
+      let newCorrectScoreLS = scoreLS["correct"] + 1
+      let incorrectScore = scoreLS["incorrect"]
       localStorage.setItem(
         "score",
         JSON.stringify({
-          correct: correctAnswers,
-          incorrectAnswers: incorrectAnswers
+          correct: newCorrectScoreLS,
+          incorrect: incorrectScore
         })
       )
     } else {
       setIncorrectAnswers((prev) => prev + 1)
+      setAnswerResult(false)
+      let scoreLS = JSON.parse(localStorage.getItem("score"))
+      let correctScoreLS = scoreLS["correct"]
+      let newIncorrectScore = scoreLS["incorrect"] + 1
+      localStorage.setItem(
+        "score",
+        JSON.stringify({
+          correct: correctScoreLS,
+          incorrect: newIncorrectScore
+        })
+      )
     }
 
     setModalIsShown(true)
@@ -118,6 +137,7 @@ function Casual() {
                   setCurrentLyric={setCurrentLyric}
                   setModalIsShown={setModalIsShown}
                   setNoAvailableLyrics={setNoAvailableLyrics}
+                  answerResult={answerResult}
                 />,
                 document.querySelector(".modal-container")
               )
@@ -136,7 +156,9 @@ function Casual() {
           <div className="button-div">
             <button onClick={() => handleMemoryClear()}>Clear Memory</button>
           </div>
-          <div className="scoreboard">Correct: 0 Incorrect: 0</div>
+          <div className="scoreboard">
+            Correct: {correctAnswers} Incorrect: {incorrectAnswers}
+          </div>
         </div>
       ) : (
         ""

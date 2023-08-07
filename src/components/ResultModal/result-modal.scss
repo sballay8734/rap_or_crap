@@ -36,4 +36,17 @@
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.answer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  .modal-header {
+    margin: 0;
+  }
 }

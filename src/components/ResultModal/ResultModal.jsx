@@ -7,7 +7,8 @@ function ResultModal({
   currentLyric,
   setCurrentLyric,
   setModalIsShown,
-  setNoAvailableLyrics
+  setNoAvailableLyrics,
+  answerResult
 }) {
   const { usedLyrics } = useLyrics()
 
@@ -31,7 +32,15 @@ function ResultModal({
     <div className="modal">
       <div className="opacity-layer"></div>
       <div className="modal-content">
-        {currentLyric.lyric}
+        {answerResult === true ? (
+          <div className="answer answer-right">
+            <h3 className="modal-header">Correct!</h3>
+          </div>
+        ) : (
+          <div className="answer answer-wrong">
+            <h3 className="modal-header">WRONG</h3>
+          </div>
+        )}
         <button onClick={closeModal}>Close / Next Lyric</button>
       </div>
     </div>

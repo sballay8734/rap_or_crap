@@ -79,10 +79,25 @@ const lyrics = [
   },
   {
     id: 17,
-    lyric: "Blank for now.",
+    lyric:
+      "Speaking of peanuts, you know what else is bad for squirrels? Ecstasy",
     rap: true,
     artist: "Eminem",
-    link: "youtube.com/VIDEO & TIME"
+    link: "https://youtu.be/41Zs5GoFzSg?t=113"
+  },
+  {
+    id: 18,
+    lyric: "Pussy had me floating, Feel like Deepak Chopra",
+    rap: true,
+    artist: "Kanye West",
+    link: "https://youtu.be/bvBfiRWLj_0?t=89"
+  },
+  {
+    id: 18,
+    lyric: "I just fucked a cup of water",
+    rap: true,
+    artist: "Gunna & Future",
+    link: "https://youtu.be/9g08kucPQtE?t=87"
   }
 ]
 

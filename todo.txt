@@ -1,5 +1,12 @@
 1. On new game click, warning box should come up ("Are you sure...").
 4. Format Lyrics to be bigger and have quotes.
-6. Add score.
-7. Score will have to be kept in local storage also.
-8. Need to review how to update ONLY one part of an object for scoreboard
+5. Format lyrics (separate lines by commas)
+6. Add rules ("If you KNOW the answer is rap, don't share it with the group. Just answer.)
+
+5. Need to add additional logic to modal (EX: You can get it right AND it be either rap OR crap. If you guess crap and it's REAL rap, you need to render the artist and youtube video)
+
+            Guess    Answer
+  Scenario1 (Rap and Correct)    - CORRECT (Render Artist and Youtube)
+  Scenario2 (Rap and Incorrect)  - WRONG ("This lyric was made up")
+  Scenario3 (Crap and Correct)   - CORRECT ("This lyric was made up")
+  Scenario4 (Crap and Incorrect) - WRONG (Render Artist and Youtube)

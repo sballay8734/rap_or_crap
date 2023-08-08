@@ -2,6 +2,11 @@
 4. Format Lyrics to be bigger and have quotes.
 5. Format lyrics (separate lines by commas)
 6. Add rules ("If you KNOW the answer is rap, don't share it with the group. Just answer.)
+7. Player list is not persistent in LS.
+8. Add logic to prevent players with same name.
+9. Need to load players, score, and available lyrics from LS if they exist.
+
+10. NEED TO MOVE ANSWER SELECT LOGIC TO ANOTHER COMPONENT SO YOU CAN MANAGE ACTIVE STATE!
 
 5. Need to add additional logic to modal (EX: You can get it right AND it be either rap OR crap. If you guess crap and it's REAL rap, you need to render the artist and youtube video)
 
@@ -10,3 +15,5 @@
   Scenario2 (Rap and Incorrect)  - WRONG ("This lyric was made up")
   Scenario3 (Crap and Correct)   - CORRECT ("This lyric was made up")
   Scenario4 (Crap and Incorrect) - WRONG (Render Artist and Youtube)
+
+6. Game should first prompt to input players names, then the Game master will select rap or crap in an alternating button for all contestants before hitting submit.

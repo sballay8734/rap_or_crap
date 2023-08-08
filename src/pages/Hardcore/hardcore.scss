@@ -1,0 +1,71 @@
+.instructions {
+  margin-bottom: 1rem;
+}
+.input-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+}
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  .player-add {
+    padding: 0.4rem 0.3rem;
+  }
+  .add-player-btn {
+    padding: 0.4rem 1rem;
+  }
+}
+.player-list {
+  margin-top: 1rem;
+  border: 1px solid green;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  .player {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .remove-player {
+      background-color: red;
+      color: black;
+      padding: 0.3rem 0.5rem;
+    }
+  }
+}
+.rap {
+  margin-bottom: 1rem;
+}
+.player-answers {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  // border: 1px solid greenyellow;
+}
+.player-ans-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+.btn-wrapper {
+  display: flex;
+  .rap-btn {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    &.active {
+      background-color: red;
+    }
+  }
+  .crap-btn {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}
+
+.submit-all-answers {
+  margin-top: 1rem;
+}

@@ -4,7 +4,7 @@ import lyrics from "../../data/lyrics"
 import useLyrics from "../../hooks/useLyrics"
 
 function ResultModal({
-  currentLyric,
+  // currentLyric,
   setCurrentLyric,
   setModalIsShown,
   setNoAvailableLyrics,

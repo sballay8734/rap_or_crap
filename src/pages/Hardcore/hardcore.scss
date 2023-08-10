@@ -69,3 +69,16 @@
 .submit-all-answers {
   margin-top: 1rem;
 }
+
+.scoreboard {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: 60px;
+  background-color: greenyellow;
+  display: flex;
+  color: black;
+  align-items: center;
+  justify-content: center;
+}

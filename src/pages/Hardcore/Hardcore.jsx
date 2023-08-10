@@ -14,6 +14,7 @@ function Hardcore() {
   const [lyric, setLyric] = useState("")
   const [showModal, setShowModal] = useState(false)
   const [clearAnswers, setClearAnswers] = useState(false)
+  const [outOfLyrics, setOutOfLyrics] = useState(false)
 
   const { players, setPlayers } = useAnswers()
   const { usedLyrics, setUsedLyrics } = useLyrics()
@@ -69,6 +70,12 @@ function Hardcore() {
     const availableLyrics = lyrics.filter(
       (lyric) => !usedLyrics.includes(lyric)
     )
+
+    if (availableLyrics.length === 0) {
+      setOutOfLyrics(true)
+      return
+    }
+
     const newLyric =
       availableLyrics[Math.floor(Math.random() * availableLyrics.length)]
 
@@ -81,8 +88,9 @@ function Hardcore() {
   }, [])
 
   return (
-    <div>
-      {gameSetup ? (
+    <div className="game-wrapper">
+      {outOfLyrics ? "No more lyrics available" : ""}
+      {gameSetup && !outOfLyrics ? (
         <>
           <div className="instructions">
             Before you begin, please add players
@@ -125,9 +133,9 @@ function Hardcore() {
       ) : (
         ""
       )}
-      {gameStart ? (
+      {gameStart && !outOfLyrics ? (
         <>
-          <div className="rap">{lyric.lyric}</div>
+          <div className="rap">{lyric ? lyric.lyric : ""}</div>
           <div className="player-answers">
             {players.map((player) => {
               return (
@@ -157,6 +165,7 @@ function Hardcore() {
             document.querySelector(".modal-container")
           )
         : ""}
+      <div className="scoreboard">Click to view scoreboard ^</div>
     </div>
   )
 }

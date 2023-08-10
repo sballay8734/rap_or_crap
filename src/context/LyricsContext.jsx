@@ -5,12 +5,9 @@ const LyricsContext = createContext()
 
 function LyricsProvider({ children }) {
   const [usedLyrics, setUsedLyrics] = useState([])
-  const [currentLyric, setCurrentLyric] = useState("")
 
   return (
-    <LyricsContext.Provider
-      value={{ usedLyrics, setUsedLyrics, currentLyric, setCurrentLyric }}
-    >
+    <LyricsContext.Provider value={{ usedLyrics, setUsedLyrics }}>
       {children}
     </LyricsContext.Provider>
   )

@@ -1,12 +1,21 @@
 import "./hardcore.scss"
 import MultiAnswerSelect from "../../components/MultiAnswerSelect/MultiAnswerSelect"
 import { useEffect, useState } from "react"
+import lyrics from "../../data/lyrics"
+import useAnswers from "../../hooks/useAnswers"
+import HardcoreModal from "../../components/HardcoreModal/HardcoreModal"
+import { createPortal } from "react-dom"
+import useLyrics from "../../hooks/useLyrics"
 
 function Hardcore() {
-  const [players, setPlayers] = useState([])
   const [inputValue, setInputValue] = useState("")
   const [gameSetup, setGameSetup] = useState(true)
   const [gameStart, setGameStart] = useState(false)
+  const [lyric, setLyric] = useState("")
+  const [showModal, setShowModal] = useState(false)
+
+  const { players, setPlayers } = useAnswers()
+  const { usedLyrics, setUsedLyrics } = useLyrics()
 
   function handleInputChange(value) {
     setInputValue(value)
@@ -14,7 +23,10 @@ function Hardcore() {
 
   function handleAddPlayer(e) {
     e.preventDefault()
-    setPlayers([...players, inputValue])
+    setPlayers([
+      ...players,
+      { name: inputValue, correct: 0, incorrect: 0, currentAnswer: null }
+    ])
     setInputValue("")
   }
 
@@ -26,8 +38,42 @@ function Hardcore() {
   }
 
   function handleGameStart() {
+    let availableLyrics = lyrics.filter((l) => !usedLyrics.includes(l))
+
+    setLyric(
+      availableLyrics[Math.floor(Math.random() * availableLyrics.length)]
+    )
     setGameStart(true)
     setGameSetup(false)
+  }
+
+  function handleAnswersSubmit() {
+    let updatedPlayers = players.map((player) => {
+      if (player.currentAnswer === lyric.rap) {
+        const modifiedPlayer = { ...player }
+        modifiedPlayer.correct = modifiedPlayer.correct + 1
+        return modifiedPlayer
+      } else {
+        const modifiedPlayer = { ...player }
+        modifiedPlayer.incorrect = modifiedPlayer.incorrect + 1
+        return modifiedPlayer
+      }
+    })
+    setPlayers(updatedPlayers)
+    console.log(updatedPlayers)
+    setUsedLyrics([...usedLyrics, lyric])
+    setShowModal(true)
+  }
+
+  function closeModal() {
+    setShowModal(false)
+    const availableLyrics = lyrics.filter(
+      (lyric) => !usedLyrics.includes(lyric)
+    )
+    const newLyric =
+      availableLyrics[Math.floor(Math.random() * availableLyrics.length)]
+
+    setLyric(newLyric)
   }
 
   useEffect(() => {
@@ -63,8 +109,8 @@ function Hardcore() {
           <div className="player-list">
             {players.map((player) => {
               return (
-                <div className="player" key={player}>
-                  <div className="player-name">{player}</div>
+                <div className="player" key={player.name}>
+                  <div className="player-name">{player.name}</div>
                   <button
                     onClick={() => handlePlayerRemove(player)}
                     className="remove-player"
@@ -82,17 +128,29 @@ function Hardcore() {
       )}
       {gameStart ? (
         <>
-          <div className="rap">Rap goes here... yo</div>
+          <div className="rap">{lyric.lyric}</div>
           <div className="player-answers">
             {players.map((player) => {
-              return <MultiAnswerSelect key={player} player={player} />
+              return <MultiAnswerSelect key={player.name} player={player} />
             })}
           </div>
-          <button className="submit-all-answers">Submit Answers</button>
+          <button onClick={handleAnswersSubmit} className="submit-all-answers">
+            Submit Answers
+          </button>
         </>
       ) : (
         ""
       )}
+      {showModal
+        ? createPortal(
+            <HardcoreModal
+              lyric={lyric}
+              closeModal={closeModal}
+              players={players}
+            />,
+            document.querySelector(".modal-container")
+          )
+        : ""}
     </div>
   )
 }

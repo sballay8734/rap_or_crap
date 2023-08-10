@@ -8,6 +8,8 @@
 
 10. NEED TO MOVE ANSWER SELECT LOGIC TO ANOTHER COMPONENT SO YOU CAN MANAGE ACTIVE STATE!
 
+11. PROBABLY USE useEffect to update LS when players change.
+
 5. Need to add additional logic to modal (EX: You can get it right AND it be either rap OR crap. If you guess crap and it's REAL rap, you need to render the artist and youtube video)
 
             Guess    Answer

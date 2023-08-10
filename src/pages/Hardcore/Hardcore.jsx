@@ -13,6 +13,7 @@ function Hardcore() {
   const [gameStart, setGameStart] = useState(false)
   const [lyric, setLyric] = useState("")
   const [showModal, setShowModal] = useState(false)
+  const [clearAnswers, setClearAnswers] = useState(false)
 
   const { players, setPlayers } = useAnswers()
   const { usedLyrics, setUsedLyrics } = useLyrics()
@@ -50,19 +51,17 @@ function Hardcore() {
   function handleAnswersSubmit() {
     let updatedPlayers = players.map((player) => {
       if (player.currentAnswer === lyric.rap) {
-        const modifiedPlayer = { ...player }
-        modifiedPlayer.correct = modifiedPlayer.correct + 1
-        return modifiedPlayer
+        return { ...player, correct: player.correct + 1 }
       } else {
-        const modifiedPlayer = { ...player }
-        modifiedPlayer.incorrect = modifiedPlayer.incorrect + 1
-        return modifiedPlayer
+        return { ...player, incorrect: player.incorrect + 1 }
       }
     })
     setPlayers(updatedPlayers)
-    console.log(updatedPlayers)
     setUsedLyrics([...usedLyrics, lyric])
     setShowModal(true)
+
+    setClearAnswers(true)
+    console.log(updatedPlayers)
   }
 
   function closeModal() {
@@ -131,7 +130,13 @@ function Hardcore() {
           <div className="rap">{lyric.lyric}</div>
           <div className="player-answers">
             {players.map((player) => {
-              return <MultiAnswerSelect key={player.name} player={player} />
+              return (
+                <MultiAnswerSelect
+                  key={player.name}
+                  player={player}
+                  clearAnswers={clearAnswers}
+                />
+              )
             })}
           </div>
           <button onClick={handleAnswersSubmit} className="submit-all-answers">
@@ -147,6 +152,7 @@ function Hardcore() {
               lyric={lyric}
               closeModal={closeModal}
               players={players}
+              setClearAnswers={setClearAnswers}
             />,
             document.querySelector(".modal-container")
           )

@@ -5,9 +5,6 @@
 7. Player list is not persistent in LS.
 8. Add logic to prevent players with same name.
 9. Need to load players, score, and available lyrics from LS if they exist.
-
-10. NEED TO MOVE ANSWER SELECT LOGIC TO ANOTHER COMPONENT SO YOU CAN MANAGE ACTIVE STATE!
-
 11. PROBABLY USE useEffect to update LS when players change.
 
 5. Need to add additional logic to modal (EX: You can get it right AND it be either rap OR crap. If you guess crap and it's REAL rap, you need to render the artist and youtube video)
@@ -18,4 +15,9 @@
   Scenario3 (Crap and Correct)   - CORRECT ("This lyric was made up")
   Scenario4 (Crap and Incorrect) - WRONG (Render Artist and Youtube)
 
-6. Game should first prompt to input players names, then the Game master will select rap or crap in an alternating button for all contestants before hitting submit.
+
+NEXT...
+1. Add bars next to name or scoreboard?
+2. Move name to middle with bar underneath and rap/crap buttons to left and right.
+3. LS implementation.
+4. Bug fixing and ALL FEATURES ABOVE.

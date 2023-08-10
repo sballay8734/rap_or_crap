@@ -1,4 +1,5 @@
 import "./hardcore.scss"
+import MultiAnswerSelect from "../../components/MultiAnswerSelect/MultiAnswerSelect"
 import { useEffect, useState } from "react"
 
 function Hardcore() {
@@ -84,15 +85,7 @@ function Hardcore() {
           <div className="rap">Rap goes here... yo</div>
           <div className="player-answers">
             {players.map((player) => {
-              return (
-                <div className="player-ans-wrapper" key={player}>
-                  <div className="player">{player}</div>
-                  <div className="btn-wrapper">
-                    <button className="rap-btn active">Rap</button>
-                    <button className="crap-btn">Crap</button>
-                  </div>
-                </div>
-              )
+              return <MultiAnswerSelect key={player} player={player} />
             })}
           </div>
           <button className="submit-all-answers">Submit Answers</button>

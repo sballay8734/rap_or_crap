@@ -1,0 +1,38 @@
+.player {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.btn-wrapper {
+  display: flex;
+  position: relative;
+  .rap-btn {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    transition: background-color 300ms ease;
+    &.active {
+      background-color: red;
+      transition: background-color 300ms ease;
+    }
+  }
+  .crap-btn {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    transition: background-color 300ms ease;
+    &.active {
+      background-color: red;
+      transition: background-color 300ms ease;
+    }
+  }
+  .spacer {
+    border: 1px solid var(--gold);
+    height: 20px;
+    display: flex;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-225%, -50%);
+  }
+}

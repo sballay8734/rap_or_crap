@@ -5,24 +5,24 @@ import { useState } from "react"
 function MultiAnswerSelect({ player }) {
   const [selectedAnswer, setSelectedAnswer] = useState(null)
 
-  function handleAnswerSelect(answer) {
+  function handleAnswerSelect(answer, player) {
     setSelectedAnswer(answer)
-    console.log(selectedAnswer)
+    player.currentAnswer = answer
   }
 
   return (
     <div key={player} className="player">
-      <div className="player-name">{player}</div>
+      <div className="player-name">{player.name}</div>
       <div className="btn-wrapper">
         <button
-          onClick={() => handleAnswerSelect(true)}
+          onClick={() => handleAnswerSelect(true, player)}
           className={`rap-btn ${selectedAnswer ? "active" : ""}`}
         >
           Rap
         </button>
         {selectedAnswer === null ? <div className="spacer"></div> : ""}
         <button
-          onClick={() => handleAnswerSelect(false)}
+          onClick={() => handleAnswerSelect(false, player)}
           className={`crap-btn ${selectedAnswer === false ? "active" : ""}`}
         >
           Crap

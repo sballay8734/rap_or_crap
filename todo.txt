@@ -6,6 +6,8 @@
 8. Add logic to prevent players with same name.
 9. Need to load players, score, and available lyrics from LS if they exist.
 11. PROBABLY USE useEffect to update LS when players change.
+12. Clear local storage OPTION if starting new game.
+13. Add conditional for bar color: red if below 25%, then orange, yellow, green.
 
 5. Need to add additional logic to modal (EX: You can get it right AND it be either rap OR crap. If you guess crap and it's REAL rap, you need to render the artist and youtube video)
 
@@ -21,3 +23,4 @@ NEXT...
 2. Move name to middle with bar underneath and rap/crap buttons to left and right.
 3. LS implementation.
 4. Bug fixing and ALL FEATURES ABOVE.
+5. MAKE IT LOOK GOOD AND RESPONSIVE.

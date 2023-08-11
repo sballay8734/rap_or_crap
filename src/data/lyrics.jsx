@@ -5,20 +5,20 @@ const lyrics = [
     lyric: "We on earth, but if you Saturn me I'd feel Uranus.",
     rap: false
   },
-  { id: 2, lyric: "8 bitches in one week, like I'm a dog walker.", rap: false }
+  { id: 2, lyric: "8 bitches in one week, like I'm a dog walker.", rap: false },
   // REMOVING LYRICS TO MAKE TESTING FASTER
 
-  // { id: 3, lyric: "Big up, big up, I said big up.", rap: false },
-  // {
-  //   id: 4,
-  //   lyric: "4 wheels on a truck, that's too basic, I want 100.",
-  //   rap: false
-  // },
-  // {
-  //   id: 5,
-  //   lyric: "Face so red cause it's flushed, Cause I'm the shit.",
-  //   rap: false
-  // },
+  { id: 3, lyric: "Big up, big up, I said big up.", rap: false },
+  {
+    id: 4,
+    lyric: "4 wheels on a truck, that's too basic, I want 100.",
+    rap: false
+  },
+  {
+    id: 5,
+    lyric: "Face so red cause it's flushed, Cause I'm the shit.",
+    rap: false
+  }
   // {
   //   id: 6,
   //   lyric: "How many times can I say it? You can't handle my sperm.",

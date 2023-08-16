@@ -19,6 +19,7 @@
 
 
 NEXT...
+1. LOAD SCORES AND USED LYRICS IN handleGameStartFunction()
 1. Add bars next to name or scoreboard?
 2. Move name to middle with bar underneath and rap/crap buttons to left and right.
 3. LS implementation.

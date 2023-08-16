@@ -43,19 +43,13 @@ function Hardcore() {
 
   function handleGameStart() {
     // need to load scores and used lyrics here
-
-    let availableLyrics = lyrics.filter((l) => !usedLyrics.includes(l))
-
-    setLyric(
-      availableLyrics[Math.floor(Math.random() * availableLyrics.length)]
-    )
+    handleLyricsUpdate()
     setGameStart(true)
     setGameSetup(false)
   }
 
   function updateLSPlayers(updatedPlayers) {
     localStorage.setItem("players", JSON.stringify(updatedPlayers))
-    console.log(updatedPlayers, "HI")
   }
 
   function updateLSLyrics(updatedLyrics) {
@@ -82,21 +76,33 @@ function Hardcore() {
     // console.log(updatedPlayers)
   }
 
+  function handleLyricsUpdate() {
+    const usedLyricsLS = JSON.parse(localStorage.getItem("usedLyrics"))
+    const separatedLyrics = usedLyricsLS?.map((l) => l.lyric)
+
+    if (usedLyricsLS) {
+      const availableLyrics = lyrics.filter(
+        (lyric) => !separatedLyrics.includes(lyric.lyric)
+      )
+      console.log(usedLyricsLS, availableLyrics)
+
+      if (availableLyrics.length === 0) {
+        setOutOfLyrics(true)
+        return
+      }
+
+      const newLyric =
+        availableLyrics[Math.floor(Math.random() * availableLyrics.length)]
+
+      setLyric(newLyric)
+    } else {
+      setLyric(lyrics[Math.floor(Math.random() * lyrics.length)])
+    }
+  }
+
   function closeModal() {
     setShowModal(false)
-    const availableLyrics = lyrics.filter(
-      (lyric) => !usedLyrics.includes(lyric)
-    )
-
-    if (availableLyrics.length === 0) {
-      setOutOfLyrics(true)
-      return
-    }
-
-    const newLyric =
-      availableLyrics[Math.floor(Math.random() * availableLyrics.length)]
-
-    setLyric(newLyric)
+    handleLyricsUpdate()
   }
 
   useEffect(() => {
@@ -104,7 +110,7 @@ function Hardcore() {
     const lyricsLS = JSON.parse(localStorage.getItem("usedLyrics"))
     if (lyricsLS) {
       setUsedLyrics(lyricsLS)
-      console.log("found")
+      handleLyricsUpdate()
     }
     if (playersLS) {
       setPlayers(playersLS)

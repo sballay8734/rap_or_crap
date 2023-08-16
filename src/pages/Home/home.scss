@@ -6,6 +6,52 @@
   align-items: center;
   justify-content: space-around;
   margin: 0 auto;
+  .home-wrapper {
+    width: 100%;
+  }
+  .home-carousel {
+    width: 50%;
+    margin: auto;
+    // border: 1px solid red;
+    display: flex;
+    justify-content: space-between;
+    .option {
+      cursor: pointer;
+      &:hover {
+        color: grey;
+      }
+    }
+  }
+  .underline-wrapper {
+    padding-top: 4px;
+    width: 50%;
+    position: relative;
+    margin: auto;
+    .underline {
+      width: 30%;
+      background-color: red;
+      height: 3px;
+      border-radius: 10px;
+      position: absolute;
+      transition: all 300ms ease;
+      &.rules {
+        left: -1%;
+        transition: all 300ms ease;
+      }
+      &.tips {
+        left: 48%;
+        transform: translateX(-50%);
+        transition: all 300ms ease;
+      }
+      &.credits {
+        left: 72%;
+        transition: all 300ms ease;
+      }
+    }
+  }
+  .text-wrapper {
+    margin-top: 1rem;
+  }
   .logo {
     font-size: 5rem;
     line-height: 80px;

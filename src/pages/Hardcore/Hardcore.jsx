@@ -198,7 +198,6 @@ function Hardcore() {
             document.querySelector(".modal-container")
           )
         : ""}
-      <div className="scoreboard">Click to view scoreboard ^</div>
     </div>
   )
 }

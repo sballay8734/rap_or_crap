@@ -1,9 +1,15 @@
 import "./home.scss"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useNavigate } from "react-router"
+import useAnswers from "../../hooks/useAnswers"
+import useLyrics from "../../hooks/useLyrics"
 
 function Home() {
-  const [selectedMode, setSelectedMode] = useState("casual")
+  const [carousel, setCarousel] = useState("rules")
+  const { setPlayers } = useAnswers()
+  const { setUsedLyrics } = useLyrics()
+
+  const classNames = carousel
 
   const navigate = useNavigate()
 
@@ -11,47 +17,55 @@ function Home() {
     navigate(selectedMode)
   }
 
+  function renderSelection(carouselSelection) {
+    if (carouselSelection === "rules") {
+      return (
+        <div className="selection rules-selection">These are the rules</div>
+      )
+    } else if (carouselSelection === "tips") {
+      return <div>There are the tips</div>
+    } else {
+      return <div>There are the credits</div>
+    }
+  }
+
+  useEffect(() => {
+    // When LS is cleared, this makes it so that pressing "Start Game" starts over and prompts you to add players.
+    // So you'll have to check if a game already exists and if so, give the user the option to continue, or start fresh with new players while ALSO giving them the option to clear usedLyrics from LS or not.
+    setPlayers([])
+    setUsedLyrics([])
+  }, [])
+
   return (
     <div className="container">
       <div className="logo">Rap or Crap</div>
-      <div className="rules">
-        <div className="rules-header">
-          A simple game. Or so you would think. There are many ways to play this
-          game and they all involve drinking. Here are two of our favorites.{" "}
-        </div>
-        <div className="game-modes">
-          <button
-            onClick={() => setSelectedMode("casual")}
-            className={`game-mode ${selectedMode === "casual" ? "active" : ""}`}
+      {/*  */}
+      <div className="home-wrapper">
+        <div className="home-carousel">
+          <div onClick={() => setCarousel("rules")} className="option rules">
+            Rules
+          </div>
+          <div onClick={() => setCarousel("tips")} className="option tips">
+            Tips
+          </div>
+          <div
+            onClick={() => setCarousel("credits")}
+            className="option credits"
           >
-            Casual
-          </button>
-          <button
-            onClick={() => setSelectedMode("hardcore")}
-            className={`game-mode ${
-              selectedMode === "hardcore" ? "active" : ""
-            }`}
-          >
-            Hardcore
-          </button>
+            Credits
+          </div>
         </div>
-        {selectedMode === "casual" ? (
-          <div className="casual-rules-header">Casual Rules</div>
-        ) : (
-          <div className="hardcore-rules-header">Hardcore Rules</div>
-        )}
+        <div className="underline-wrapper">
+          <div className={`underline ${classNames}`}></div>
+        </div>
+        <div className="text-wrapper">{renderSelection(carousel)}</div>
       </div>
       <div className="start-game">
         <button
-          onClick={() => handleGameStart(selectedMode)}
+          onClick={() => handleGameStart("hardcore")}
           className="start-button"
         >
-          Start Game in{" "}
-          <span className="start-button-mode">
-            {selectedMode.slice(0, 1).toLocaleUpperCase() +
-              selectedMode.slice(1)}
-          </span>{" "}
-          Mode
+          Start Game
         </button>
       </div>
     </div>

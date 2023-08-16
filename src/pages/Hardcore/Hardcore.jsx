@@ -6,6 +6,7 @@ import useAnswers from "../../hooks/useAnswers"
 import HardcoreModal from "../../components/HardcoreModal/HardcoreModal"
 import { createPortal } from "react-dom"
 import useLyrics from "../../hooks/useLyrics"
+import OutOfLyrics from "../../components/OutOfLyrics/OutOfLyrics"
 
 function Hardcore() {
   const [inputValue, setInputValue] = useState("")
@@ -120,7 +121,7 @@ function Hardcore() {
 
   return (
     <div className="game-wrapper">
-      {outOfLyrics ? "No more lyrics available" : ""}
+      {outOfLyrics ? <OutOfLyrics players={players} /> : ""}
       {gameSetup && !outOfLyrics ? (
         <>
           <div className="instructions">
@@ -174,6 +175,7 @@ function Hardcore() {
                   key={player.name}
                   player={player}
                   clearAnswers={clearAnswers}
+                  showAnswerButtons={true}
                 />
               )
             })}

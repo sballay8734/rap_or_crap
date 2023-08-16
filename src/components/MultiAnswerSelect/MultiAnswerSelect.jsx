@@ -10,8 +10,6 @@ function MultiAnswerSelect({ player, clearAnswers }) {
   function handleAnswerSelect(answer, player) {
     setSelectedAnswer(answer)
     player.currentAnswer = answer
-    console.log(answer)
-    console.log(selectedAnswer)
   }
 
   useEffect(() => {

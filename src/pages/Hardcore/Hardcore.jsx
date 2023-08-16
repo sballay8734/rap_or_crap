@@ -25,10 +25,12 @@ function Hardcore() {
 
   function handleAddPlayer(e) {
     e.preventDefault()
-    setPlayers([
+    const updatedPlayers = [
       ...players,
       { name: inputValue, correct: 0, incorrect: 0, currentAnswer: null }
-    ])
+    ]
+    localStorage.setItem("players", JSON.stringify(updatedPlayers))
+    setPlayers(updatedPlayers)
     setInputValue("")
   }
 
@@ -40,6 +42,8 @@ function Hardcore() {
   }
 
   function handleGameStart() {
+    // need to load scores and used lyrics here
+
     let availableLyrics = lyrics.filter((l) => !usedLyrics.includes(l))
 
     setLyric(
@@ -47,6 +51,15 @@ function Hardcore() {
     )
     setGameStart(true)
     setGameSetup(false)
+  }
+
+  function updateLSPlayers(updatedPlayers) {
+    localStorage.setItem("players", JSON.stringify(updatedPlayers))
+    console.log(updatedPlayers, "HI")
+  }
+
+  function updateLSLyrics(updatedLyrics) {
+    localStorage.setItem("usedLyrics", JSON.stringify(updatedLyrics))
   }
 
   function handleAnswersSubmit() {
@@ -57,12 +70,16 @@ function Hardcore() {
         return { ...player, incorrect: player.incorrect + 1 }
       }
     })
+    let updatedLyrics = [...usedLyrics, lyric]
+
     setPlayers(updatedPlayers)
-    setUsedLyrics([...usedLyrics, lyric])
+    setUsedLyrics(updatedLyrics)
+    updateLSPlayers(updatedPlayers)
+    updateLSLyrics(updatedLyrics)
     setShowModal(true)
 
     setClearAnswers(true)
-    console.log(updatedPlayers)
+    // console.log(updatedPlayers)
   }
 
   function closeModal() {
@@ -83,8 +100,16 @@ function Hardcore() {
   }
 
   useEffect(() => {
-    // need to load players, score, and available lyrics from LS if they exist.
-    // on refresh, these items should be set FROM local storage.
+    const playersLS = JSON.parse(localStorage.getItem("players"))
+    const lyricsLS = JSON.parse(localStorage.getItem("usedLyrics"))
+    if (lyricsLS) {
+      setUsedLyrics(lyricsLS)
+      console.log("found")
+    }
+    if (playersLS) {
+      setPlayers(playersLS)
+      handleGameStart()
+    }
   }, [])
 
   return (

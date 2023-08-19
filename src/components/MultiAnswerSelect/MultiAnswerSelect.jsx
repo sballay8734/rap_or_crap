@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import { lightFormat } from "date-fns"
 import "./multi-answer.scss"
 import { useEffect, useState } from "react"
 
@@ -18,9 +19,36 @@ function MultiAnswerSelect({ player, clearAnswers, showAnswerButtons }) {
     }
   }, [clearAnswers])
 
+  function handleColorChange(percentageCorrect) {
+    if (percentageCorrect < 10) {
+      return "red-worst"
+    } else if (percentageCorrect < 20) {
+      return "red"
+    } else if (percentageCorrect < 30) {
+      return "orange-worst"
+    } else if (percentageCorrect < 40) {
+      return "orange"
+    } else if (percentageCorrect < 50) {
+      return "yellow"
+    } else if (percentageCorrect < 60) {
+      return "light-green-worst"
+    } else if (percentageCorrect < 70) {
+      return "light-green"
+    } else if (percentageCorrect < 80) {
+      return "green-worst"
+    } else if (percentageCorrect <= 100) {
+      return "green"
+    } else {
+      return ""
+    }
+  }
+
   return (
     <div key={player} className="player-answer-select">
-      <div className="player-name">
+      <div className="player-name-2">
+        <div className={`score-icon ${handleColorChange(percentageCorrect)}`}>
+          {player.correct}/{player.incorrect + player.correct}
+        </div>
         <div className="name">{player.name}</div>
         <div className="bar-wrapper">
           <div

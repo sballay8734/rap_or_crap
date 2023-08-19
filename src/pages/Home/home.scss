@@ -1,61 +1,86 @@
 .container {
   max-width: 90%;
-  height: 100%;
+  height: calc(100% - 32px);
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   margin: 0 auto;
-  .home-wrapper {
-    width: 100%;
+  padding: 1rem 0;
+  .start-game {
+    margin-top: auto;
   }
-  .home-carousel {
-    width: 50%;
-    margin: auto;
-    // border: 1px solid red;
+  .home-wrapper {
+    margin-top: 1rem;
     display: flex;
-    justify-content: space-between;
-    .option {
-      cursor: pointer;
-      &:hover {
-        color: grey;
-      }
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 65%;
+    @media (min-height: 700px) {
+      height: 70%;
+    }
+    @media (min-height: 850px) {
+      height: 75%;
     }
   }
-  .underline-wrapper {
-    padding-top: 4px;
-    width: 50%;
-    position: relative;
-    margin: auto;
-    .underline {
-      width: 30%;
-      background-color: red;
-      height: 3px;
-      border-radius: 10px;
-      position: absolute;
+  .home-carousel {
+    width: 100%;
+    font-family: 'Fredericka the Great', cursive;
+    font-size: 1.3rem;
+    color: rgb(255, 0, 0);
+    display: flex;
+    // justify-content: space-between;
+    align-items: center;
+    background-color: rgb(205, 205, 205);
+    border: 2px solid green;
+    border-radius: 5px;
+    .option {
+      padding: 0.2rem 0rem;
+      cursor: pointer;
+      width: 100%;
       transition: all 300ms ease;
-      &.rules {
-        left: -1%;
+      &:hover {
+        color: rgb(0, 0, 0);
+        background-color: rgb(89, 172, 89);
         transition: all 300ms ease;
+      }
+      &.active {
+        background-color: black;
+        transition: all 300ms ease;
+        color: white;
+      }
+      &.rules {
+        border-right: 1px solid rgb(162, 162, 162);
       }
       &.tips {
-        left: 48%;
-        transform: translateX(-50%);
-        transition: all 300ms ease;
+        border-left: 1px solid rgb(162, 162, 162);
+        border-right: 1px solid rgb(162, 162, 162);
       }
       &.credits {
-        left: 72%;
-        transition: all 300ms ease;
+        border-left: 1px solid rgb(162, 162, 162);
       }
     }
   }
   .text-wrapper {
-    margin-top: 1rem;
+    margin-top: 2rem;
+    max-width: 100%;
+    height: 100%;
+    border: 2px solid red;
+    border-radius: 10px;
+    text-align: left;
+    overflow-y: scroll;
+    background-color: rgb(73, 62, 0);
   }
   .logo {
-    font-size: 5rem;
+    justify-self: flex-start;
+    font-size: 3rem;
     line-height: 80px;
-    font-family: 'Cinzel Decorative', cursive;
+    font-family: 'Fredericka the Great', cursive;
+    @media (max-width: 350px) {
+      font-size: 2rem;
+    }
   }
   .rules {
     display: flex;
@@ -78,6 +103,35 @@
   }
 }
 
+.rules-selection {
+  display: flex;
+  margin: 0;
+  flex-direction: column;
+  // gap: 1.5rem;
+  font-size: 0.9rem;
+  font-family: 'ADLaM Display', cursive;
+  padding: 1rem 1rem;
+  list-style-type: none;
+  @media (max-width: 350px) {
+      font-size: 0.8rem;
+    }
+  .spacer {
+    height: 1.5rem;
+    margin: .75rem 0;
+    width: 100%;
+    align-self: center;
+    height: 1px;
+    background-color: rgb(109, 109, 109);
+  }
+}
+
 .start-button-mode {
   color: var(--baby-blue);
+}
+.start-game {
+  width: 100%;
+}
+.start-button {
+  width: 100%;
+  height: 70px;
 }

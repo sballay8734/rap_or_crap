@@ -9,8 +9,6 @@ function Home() {
   const { setPlayers } = useAnswers()
   const { setUsedLyrics } = useLyrics()
 
-  const classNames = carousel
-
   const navigate = useNavigate()
 
   function handleGameStart(selectedMode) {
@@ -20,12 +18,49 @@ function Home() {
   function renderSelection(carouselSelection) {
     if (carouselSelection === "rules") {
       return (
-        <div className="selection rules-selection">These are the rules</div>
+        <ol className="selection rules-selection">
+          <li className="rule rule-one">
+            1. After clicking {`"Start Game"`} enter the names of the players
+            participating and click {`"Begin"`}.
+          </li>
+          <div className="spacer"></div>
+          <li className="rule rule-two">
+            2. Have a single individual both read the lyric and input the answer
+            on behalf of each player prior to submitting them.
+          </li>
+          <div className="spacer"></div>
+          <li className="rule rule-three">
+            3. For added fun, pass the device around and take turns reading the
+            lyrics and inputting answers.
+          </li>
+          <div className="spacer"></div>
+          <li className="rule rule-four">4. Wrong answers drink.</li>
+          <div className="spacer"></div>
+          <li className="rule rule-five">
+            5. (Optional) At the end of the game, the winner chooses someone to
+            drink for an amount of seconds equal to the number of questions they
+            got right.
+          </li>
+        </ol>
       )
     } else if (carouselSelection === "tips") {
-      return <div>There are the tips</div>
+      return (
+        <div className="selection">
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odio fugit
+          ad corrupti voluptate repellat mollitia architecto numquam porro
+          ducimus, corporis sint vitae velit animi molestiae qui. Exercitationem
+          perspiciatis praesentium sequi.
+        </div>
+      )
     } else {
-      return <div>There are the credits</div>
+      return (
+        <div className="selection">
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi
+          similique vero debitis praesentium adipisci quia aut accusamus quis
+          quae modi, illo, natus facilis consequuntur velit, voluptatum
+          reiciendis sit corporis ab!
+        </div>
+      )
     }
   }
 
@@ -38,25 +73,30 @@ function Home() {
 
   return (
     <div className="container">
-      <div className="logo">Rap or Crap</div>
+      <div className="logo">Rap or Crap?</div>
       {/*  */}
       <div className="home-wrapper">
         <div className="home-carousel">
-          <div onClick={() => setCarousel("rules")} className="option rules">
+          <div
+            onClick={() => setCarousel("rules")}
+            className={`option rules ${carousel === "rules" ? "active" : ""}`}
+          >
             Rules
           </div>
-          <div onClick={() => setCarousel("tips")} className="option tips">
+          <div
+            onClick={() => setCarousel("tips")}
+            className={`option tips ${carousel === "tips" ? "active" : ""}`}
+          >
             Tips
           </div>
           <div
             onClick={() => setCarousel("credits")}
-            className="option credits"
+            className={`option credits ${
+              carousel === "credits" ? "active" : ""
+            }`}
           >
             Credits
           </div>
-        </div>
-        <div className="underline-wrapper">
-          <div className={`underline ${classNames}`}></div>
         </div>
         <div className="text-wrapper">{renderSelection(carousel)}</div>
       </div>

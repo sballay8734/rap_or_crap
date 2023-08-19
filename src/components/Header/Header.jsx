@@ -11,7 +11,7 @@ function Header() {
   return (
     <div className="header">
       <nav className="nav">
-        <div className="logo">Rap or Crap</div>
+        <div className="logo">X</div>
         <ul className="nav-items">
           <li onClick={handleNewGameClick} className="nav-item">
             New Game

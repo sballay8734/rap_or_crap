@@ -19,7 +19,7 @@ function MultiAnswerSelect({ player, clearAnswers, showAnswerButtons }) {
   }, [clearAnswers])
 
   return (
-    <div key={player} className="player">
+    <div key={player} className="player-answer-select">
       <div className="player-name">
         <div className="name">{player.name}</div>
         <div className="bar-wrapper">
@@ -39,7 +39,7 @@ function MultiAnswerSelect({ player, clearAnswers, showAnswerButtons }) {
           >
             Rap
           </button>
-          {selectedAnswer === null ? <div className="spacer"></div> : ""}
+          {/* {selectedAnswer === null ? <div className="spacer"></div> : ""} */}
           <button
             onClick={() => handleAnswerSelect(false, player)}
             className={`crap-btn ${selectedAnswer === false ? "active" : ""}`}

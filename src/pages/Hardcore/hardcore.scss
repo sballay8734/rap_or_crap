@@ -1,11 +1,56 @@
+.game-wrapper {
+  width: 90%;
+  height: calc(100% - 16px);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  .spacer {
+    width: 100%;
+    height: 2px;
+    background-color: var(--background-lighter);
+    margin-top: 1rem;
+  }
+}
+
+.top-wrapper {
+  max-height: 85%;
+}
+
+.begin-button {
+  font-family: 'Fredericka the Great', cursive;
+  font-size: 1.5rem;
+  width: 100%;
+  height: 10%;
+  background-color: var(--sky-blue);
+  color: black;
+  border: 2px solid var(--background-color);
+  transition: all 300ms ease;
+  margin-top: 1rem;
+  &:hover {
+    background-color: var(--sky-blue-hover);
+    color: white;
+    border: 2px solid var(--sky-blue);
+    transition: all 300ms ease;
+  }
+  &:active {
+    background-color: var(--sky-blue-active);
+    transition: all 300ms ease;
+  }
+}
+
 .instructions {
   margin-bottom: 1rem;
+  font-family: 'ADLaM Display', cursive;
+  font-size: 2rem;
 }
 .input-form {
   display: flex;
   align-items: center;
+  flex-direction: column;
+  width: 100%;
   justify-content: center;
-  gap: 0.4rem;
+  gap: 1rem;
 }
 .input-wrapper {
   display: flex;
@@ -13,26 +58,53 @@
   justify-content: center;
   gap: 0.5rem;
   .player-add {
-    padding: 0.4rem 0.3rem;
+    height: 30px;
+    padding: 0.2rem 0.4rem;
+    width: 90%;
+    font-size: 1rem;
+    font-family: 'ADLaM Display', cursive;
   }
   .add-player-btn {
-    padding: 0.4rem 1rem;
+    padding: 0.6rem 1.5rem;
+    font-family: 'ADLaM Display', cursive;
   }
 }
 .player-list {
   margin-top: 1rem;
-  border: 1px solid green;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.7rem;
+  overflow-y: scroll;
+  background-color: var(--background-color);
+  border: 2px solid var(--background-lighter);
+  border-radius: 5px;
+  padding: 1rem;
+  max-height: 50%;
+  @media (min-height: 700px) {
+    max-height: 55%;
+  }
+  @media (min-height: 750px) {
+    max-height: 58%;
+  }
+  @media (min-height: 800px) {
+    max-height: 61%;
+  }
   .player {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    background-color: var(--background-lighter);
+    font-family: 'ADLaM Display', cursive;
+    border-radius: 5px;
+    .player-name {
+      background-color: transparent;
+    }
     .remove-player {
       background-color: red;
       color: black;
       padding: 0.3rem 0.5rem;
+      border-radius: 5px;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
     }
   }
 }

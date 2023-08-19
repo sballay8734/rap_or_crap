@@ -8,7 +8,7 @@ import Hardcore from "./pages/Hardcore/Hardcore"
 function App() {
   return (
     <BrowserRouter>
-      <Header />
+      {/* <Header /> */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/casual" element={<Casual />} />

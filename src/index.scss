@@ -5,7 +5,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #0b0c10;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -13,9 +13,21 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 
+  --background-color: #0b0c10;
+  --background-lighter: #1F2833;
+  --grey: #C5C6C7;
+  --sky-blue: #66fcf1;
+  --sky-blue-hover: #183e3b;
+  --sky-blue-active: #0d2221;
+  --darker-blue: #45a29e;
+
   --navy-blue: rgba(7, 27, 44);
   --gold: rgba(177, 155, 105);
   --baby-blue: rgba(62, 142, 222);
+}
+
+html {
+  background-image: url("../src/assets/simple_dashed.png");
 }
 
 body {
@@ -23,8 +35,8 @@ body {
   display: flex;
   place-items: center;
   min-width: 320px;
-  height: calc(100vh - 64px);
-  margin-top: 64px;
+  height: calc(100vh - 16px);
+  margin-top: 16px;
 }
 
 button {

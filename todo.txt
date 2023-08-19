@@ -1,4 +1,5 @@
 1. On new game click, warning box should come up ("Are you sure...").
+2. Add error messages for adding player with same name
 4. Format Lyrics to be bigger and have quotes.
 5. Format lyrics (separate lines by commas)
 6. Add rules ("If you KNOW the answer is rap, don't share it with the group. Just answer.)

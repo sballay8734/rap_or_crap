@@ -2,7 +2,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  background-color: var(--navy-blue);
+  background-color: transparent;
   width: 100%;
   .nav {
     display: flex;
@@ -23,6 +23,7 @@
         font-family: 'Fredericka the Great', cursive;
         cursor: pointer;
         font-size: 1.5rem;
+        color: var(--sky-blue);
         &:hover {
           color: rgb(127, 108, 0);
         }

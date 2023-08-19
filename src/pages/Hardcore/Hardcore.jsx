@@ -40,6 +40,7 @@ function Hardcore() {
       return item !== player
     })
     setPlayers(newPlayersList)
+    localStorage.setItem("players", JSON.stringify(newPlayersList))
   }
 
   function handleGameStart() {
@@ -124,43 +125,48 @@ function Hardcore() {
       {outOfLyrics ? <OutOfLyrics players={players} /> : ""}
       {gameSetup && !outOfLyrics ? (
         <>
-          <div className="instructions">
-            Before you begin, please add players
+          <div className="top-wrapper">
+            <div className="instructions">
+              Before you begin, please add players
+            </div>
+            <div className="input-wrapper">
+              <form action="submit" className="input-form">
+                <input
+                  maxLength={15}
+                  onChange={(e) => handleInputChange(e.target.value)}
+                  type="text"
+                  className="player-add"
+                  value={inputValue}
+                />
+                <button
+                  type="submit"
+                  onClick={(e) => handleAddPlayer(e)}
+                  className="add-player-btn"
+                >
+                  Add Player
+                </button>
+              </form>
+            </div>
+            <div className="spacer"></div>
+            <div className="player-list">
+              {players.map((player) => {
+                return (
+                  <div className="player" key={player.name}>
+                    <div className="player-name">{player.name}</div>
+                    <button
+                      onClick={() => handlePlayerRemove(player)}
+                      className="remove-player"
+                    >
+                      Remove
+                    </button>
+                  </div>
+                )
+              })}
+            </div>
           </div>
-          <div className="input-wrapper">
-            <form action="submit" className="input-form">
-              <input
-                maxLength={15}
-                onChange={(e) => handleInputChange(e.target.value)}
-                type="text"
-                className="player-add"
-                value={inputValue}
-              />
-              <button
-                type="submit"
-                onClick={(e) => handleAddPlayer(e)}
-                className="add-player-btn"
-              >
-                Add
-              </button>
-            </form>
-          </div>
-          <div className="player-list">
-            {players.map((player) => {
-              return (
-                <div className="player" key={player.name}>
-                  <div className="player-name">{player.name}</div>
-                  <button
-                    onClick={() => handlePlayerRemove(player)}
-                    className="remove-player"
-                  >
-                    Remove
-                  </button>
-                </div>
-              )
-            })}
-            <button onClick={handleGameStart}>Begin Game</button>
-          </div>
+          <button className="begin-button" onClick={handleGameStart}>
+            Begin Game
+          </button>
         </>
       ) : (
         ""

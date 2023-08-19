@@ -20,45 +20,91 @@ function Home() {
       return (
         <ol className="selection rules-selection">
           <li className="rule rule-one">
-            1. After clicking {`"Start Game"`} enter the names of the players
-            participating and click {`"Begin"`}.
+            <span className="number">1.</span>
+            <span className="number-spacer"></span> After clicking{" "}
+            {`"Start Game"`} enter the names of the players participating and
+            click {`"Begin"`}.
           </li>
-          <div className="spacer"></div>
+          {/* <div className="spacer"></div> */}
           <li className="rule rule-two">
-            2. Have a single individual both read the lyric and input the answer
-            on behalf of each player prior to submitting them.
+            <span className="number">2.</span>
+            <span className="number-spacer"></span> Have a single individual
+            both read the lyric and input the answer on behalf of each player.
           </li>
-          <div className="spacer"></div>
+          {/* <div className="spacer"></div> */}
           <li className="rule rule-three">
-            3. For added fun, pass the device around and take turns reading the
-            lyrics and inputting answers.
+            <span className="number">3.</span>
+            <span className="number-spacer"></span> For added fun, pass the
+            device around and take turns reading the lyrics and inputting
+            answers.
           </li>
-          <div className="spacer"></div>
-          <li className="rule rule-four">4. Wrong answers drink.</li>
-          <div className="spacer"></div>
+          {/* <div className="spacer"></div> */}
+          <li className="rule rule-four">
+            <span className="number">4.</span>
+            <span className="number-spacer"></span> Wrong answers drink.
+          </li>
+          {/* <div className="spacer"></div> */}
           <li className="rule rule-five">
-            5. (Optional) At the end of the game, the winner chooses someone to
-            drink for an amount of seconds equal to the number of questions they
-            got right.
+            <span className="number">5.</span>
+            <span className="number-spacer"></span>At the end of the game,
+            everyone drinks for the amount of seconds equal to the number of
+            questions they got wrong.
           </li>
         </ol>
       )
     } else if (carouselSelection === "tips") {
       return (
-        <div className="selection">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odio fugit
-          ad corrupti voluptate repellat mollitia architecto numquam porro
-          ducimus, corporis sint vitae velit animi molestiae qui. Exercitationem
-          perspiciatis praesentium sequi.
-        </div>
+        <ol className="selection rules-selection">
+          <li className="rule rule-one">
+            <span className="number">1.</span>
+            <span className="number-spacer"></span>If you KNOW the lyric is from
+            a real song, keep it to yourself. Saying things like{" "}
+            {`"Oh I know this song!", or "This is JAY-Z baby!"`} will give away
+            the answer.
+          </li>
+          {/* <div className="spacer"></div> */}
+          <li className="rule rule-two">
+            <span className="number">2.</span>
+            <span className="number-spacer"></span>Click on the YouTube links if
+            you want proof that the lyric is real.
+          </li>
+          {/* <div className="spacer"></div> */}
+          <li className="rule rule-three">
+            <span className="number">3.</span>
+            <span className="number-spacer"></span> Lorem ipsum dolor sit amet
+            consectetur adipisicing elit.
+          </li>
+          {/* <div className="spacer"></div> */}
+          <li className="rule rule-four">
+            <span className="number">4.</span>
+            <span className="number-spacer"></span>Lorem ipsum dolor sit amet
+            consectetur adipisicing elit.
+          </li>
+          {/* <div className="spacer"></div> */}
+          <li className="rule rule-five">
+            <span className="number">5.</span>
+            <span className="number-spacer"></span>Lorem ipsum dolor, sit amet
+            consectetur adipisicing elit.
+          </li>
+        </ol>
       )
     } else {
       return (
-        <div className="selection">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi
-          similique vero debitis praesentium adipisci quia aut accusamus quis
-          quae modi, illo, natus facilis consequuntur velit, voluptatum
-          reiciendis sit corporis ab!
+        <div className="selection credits-selection">
+          <p>
+            Without the 2 hour drive to the Jersey Shore, most of these lyrics
+            would never have come to life. Special thanks Lorem ipsum dolor sit,
+            amet consectetur adipisicing elit. Laboriosam rerum enim amet animi!
+            Sed cupiditate voluptas vitae sit consectetur hic quas nulla magnam,
+            iusto iure dolor nobis aliquam quis vero!
+            <br></br>
+            <br></br>
+            Without the 2 hour drive to the Jersey Shore, most of these lyrics
+            would never have come to life. Special thanks Lorem ipsum dolor sit,
+            amet consectetur adipisicing elit. Laboriosam rerum enim amet animi!
+            Sed cupiditate voluptas vitae sit consectetur hic quas nulla magnam,
+            iusto iure dolor nobis aliquam quis vero!
+          </p>
         </div>
       )
     }
@@ -73,21 +119,23 @@ function Home() {
 
   return (
     <div className="container">
-      <div className="logo">Rap or Crap?</div>
+      <div className="logo">
+        <span className="logo-background"></span>Rap or Crap?
+      </div>
       {/*  */}
       <div className="home-wrapper">
         <div className="home-carousel">
-          <div
-            onClick={() => setCarousel("rules")}
-            className={`option rules ${carousel === "rules" ? "active" : ""}`}
-          >
-            Rules
-          </div>
           <div
             onClick={() => setCarousel("tips")}
             className={`option tips ${carousel === "tips" ? "active" : ""}`}
           >
             Tips
+          </div>
+          <div
+            onClick={() => setCarousel("rules")}
+            className={`option rules ${carousel === "rules" ? "active" : ""}`}
+          >
+            Rules
           </div>
           <div
             onClick={() => setCarousel("credits")}

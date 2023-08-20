@@ -18,7 +18,7 @@ const lyrics = [
     id: 5,
     lyric: "Face so red cause it's flushed, Cause I'm the shit.",
     rap: false
-  }
+  },
   // {
   //   id: 6,
   //   lyric: "How many times can I say it? You can't handle my sperm.",
@@ -79,28 +79,28 @@ const lyrics = [
   //   lyric: "I'll take the L out of clock, then you take what's left.",
   //   rap: false
   // },
-  // {
-  //   id: 17,
-  //   lyric:
-  //     "Speaking of peanuts, you know what else is bad for squirrels? Ecstasy",
-  //   rap: true,
-  //   artist: "Eminem",
-  //   link: "https://youtu.be/41Zs5GoFzSg?t=113"
-  // },
-  // {
-  //   id: 18,
-  //   lyric: "Pussy had me floating, Feel like Deepak Chopra",
-  //   rap: true,
-  //   artist: "Kanye West",
-  //   link: "https://youtu.be/bvBfiRWLj_0?t=89"
-  // },
-  // {
-  //   id: 18,
-  //   lyric: "I just fucked a cup of water",
-  //   rap: true,
-  //   artist: "Gunna & Future",
-  //   link: "https://youtu.be/9g08kucPQtE?t=87"
-  // }
+  {
+    id: 17,
+    lyric:
+      "Speaking of peanuts, you know what else is bad for squirrels? Ecstasy",
+    rap: true,
+    artist: "Eminem",
+    link: "https://youtu.be/41Zs5GoFzSg?t=113"
+  },
+  {
+    id: 18,
+    lyric: "Pussy had me floating, Feel like Deepak Chopra",
+    rap: true,
+    artist: "Kanye West",
+    link: "https://youtu.be/bvBfiRWLj_0?t=89"
+  },
+  {
+    id: 18,
+    lyric: "I just fucked a cup of water",
+    rap: true,
+    artist: "Gunna & Future",
+    link: "https://youtu.be/9g08kucPQtE?t=87"
+  }
 ]
 
 export default lyrics

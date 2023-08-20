@@ -9,6 +9,7 @@
     width: 100vw;
     height: 100vh;
     background-color: black;
+    opacity: 0.9;
   }
   .hardcore-content-layer {
     position: absolute;
@@ -16,11 +17,111 @@
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: white;
-    height: 200px;
-    width: 400px;
+    min-height: 175px;
+    width: 80%;
     display: flex;
     align-items: center;
-    justify-content: center;
+    gap: 1rem;
+    justify-content: space-between;
     color: black;
+    flex-direction: column;
+    border-radius: 5px;
+    padding: 1rem;
+    .results {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      margin: 0 auto;
+      gap: 1rem;
+      font-family: 'ADLaM Display', cursive;
+      font-size: 0.8rem;
+      .safe {
+        background-color: lightgreen;
+        border: 2px solid green;
+      }
+      .drink {
+        background-color: pink;
+        border: 2px solid red;
+      }
+      .safe, .drink {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 50%;
+        border-radius: 5px;
+        // justify-content: center;
+      }
+      .safe-header {
+        font-size: 1.5rem;
+        font-family: 'Fredericka the Great', cursive;
+        color: green;
+        text-decoration: underline;
+      }
+      .drink-header {
+        font-size: 1.5rem;
+        font-family: 'Fredericka the Great', cursive;
+        text-decoration: underline;
+        color: red;
+      }
+    }
+    .next-lyric {
+      font-family: 'Fredericka the Great', cursive;
+      font-size: 1.5rem;
+      width: 100%;
+      height: 70px;
+      background-color: var(--background-color);
+      color: var(white);
+      border: 2px solid var(--background-color);
+      transition: all 300ms ease;
+      &:hover {
+        background-color: var(--sky-blue-hover);
+        color: white;
+        border: 2px solid var(--sky-blue);
+        transition: all 300ms ease;
+      }
+      &:active {
+        background-color: var(--sky-blue-active);
+        transition: all 300ms ease;
+      }
+    }
+    .is-rap, .is-crap {
+      font-family: 'ADLaM Display', cursive;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 0.5rem;
+      .is-rap-lyric {
+        color: rgb(0, 162, 255);
+      }
+      .click-here {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+      p {
+        margin: 0;
+        .lyric-link {
+          text-decoration: none;
+          color: black;
+          background-color: var(--sky-blue);
+          padding: 0.2rem 0.5rem;
+          border-radius: 5px;
+          font-family: 'Fredericka the Great', cursive;
+          border: 2px solid var(--background-color);
+          &:hover {
+            background-color: var(--sky-blue-hover);
+            color: white;
+            border: 2px solid var(--sky-blue);
+            transition: all 300ms ease;
+          }
+          &:active {
+            background-color: var(--sky-blue-active);
+            transition: all 300ms ease;
+          }
+        }
+      }
+
+    }
   }
 }

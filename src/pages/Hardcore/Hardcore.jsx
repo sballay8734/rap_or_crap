@@ -86,7 +86,6 @@ function Hardcore() {
       const availableLyrics = lyrics.filter(
         (lyric) => !separatedLyrics.includes(lyric.lyric)
       )
-      console.log(usedLyricsLS, availableLyrics)
 
       if (availableLyrics.length === 0) {
         setOutOfLyrics(true)
@@ -173,7 +172,7 @@ function Hardcore() {
       )}
       {gameStart && !outOfLyrics ? (
         <>
-          <div className="rap">{lyric ? lyric.lyric : ""}</div>
+          <div className="rap">{lyric ? `"${lyric.lyric}"` : ""}</div>
           <div className="player-answers">
             {players.map((player) => {
               return (

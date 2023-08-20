@@ -1,4 +1,8 @@
 1. On new game click, warning box should come up ("Are you sure...").
+2. Set players current answers to null when closing modal.
+3. Make sure all answers are selected before submitting.
+4. When submitting answers with lots of players, after click "next lyric" it does not scroll to the top of the players.
+5. When score icon gets greater than 3 characters, it is no longer circular.
 2. Add error messages for adding player with same name
 4. Format Lyrics to be bigger and have quotes.
 5. Format lyrics (separate lines by commas)
@@ -20,6 +24,7 @@
 
 
 NEXT...
+1. Add player screen needs some love (looks bad)
 1. LOAD SCORES AND USED LYRICS IN handleGameStartFunction()
 1. Add bars next to name or scoreboard?
 2. Move name to middle with bar underneath and rap/crap buttons to left and right.

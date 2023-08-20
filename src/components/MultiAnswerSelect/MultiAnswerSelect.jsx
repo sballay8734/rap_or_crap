@@ -1,16 +1,28 @@
 /* eslint-disable react/prop-types */
-import { lightFormat } from "date-fns"
 import "./multi-answer.scss"
 import { useEffect, useState } from "react"
+import useAnswers from "../../hooks/useAnswers"
 
 function MultiAnswerSelect({ player, clearAnswers, showAnswerButtons }) {
   const [selectedAnswer, setSelectedAnswer] = useState(null)
+  const { players, setPlayers } = useAnswers()
   const percentageCorrect =
     (player.correct / (player.correct + player.incorrect)) * 100
 
   function handleAnswerSelect(answer, player) {
     setSelectedAnswer(answer)
     player.currentAnswer = answer
+
+    let updatedPlayers = players.map((p) => {
+      if (p.name === player.name) {
+        return player
+      } else {
+        return p
+      }
+    })
+
+    setPlayers(updatedPlayers)
+    localStorage.setItem("players", JSON.stringify(updatedPlayers))
   }
 
   useEffect(() => {

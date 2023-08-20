@@ -19,28 +19,34 @@ function HardcoreModal({ lyric, players, closeModal, setClearAnswers }) {
   function handleResultsLogic(lyric) {
     if (lyric.rap) {
       return (
-        <div className="is-rap">
-          <p>
-            <span className="is-rap-lyric">{lyric.lyric}</span>, is a sick bar
-            written by {lyric.artist}
-          </p>
-          <p className="click-here">
-            {`Don't believe us?`}
-            <a
-              className="lyric-link"
-              href={lyric.link}
-              target="_blank"
-              rel="noreferrer"
-            >
-              Click here
-            </a>
-          </p>
-        </div>
+        <>
+          <p className="rap-header">{`RAP`}</p>
+          <div className="is-rap">
+            <p className="lyric-artist-wrapper">
+              <span className="is-rap-lyric">
+                {`"`}
+                {lyric.lyric}
+                {`" `}
+              </span>
+              <span className="artist-name">- {lyric.artist}</span>
+            </p>
+            <p className="click-here">
+              <a
+                className="lyric-link"
+                href={lyric.link}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {`Click here if you don't believe us!`}
+              </a>
+            </p>
+          </div>
+        </>
       )
     } else {
       return (
         <div className="is-crap">
-          <p>{`That's crap brother`}</p>
+          <p className="crap-header">{`CRAP`}</p>
         </div>
       )
     }
@@ -53,6 +59,7 @@ function HardcoreModal({ lyric, players, closeModal, setClearAnswers }) {
     <div className="hardcore-modal">
       <div className="hardcore-opacity-layer"></div>
       <div className="hardcore-content-layer">
+        {handleResultsLogic(lyric)}
         <div className="results">
           <div className="safe">
             <div className="safe-header">SAFE</div>
@@ -67,7 +74,6 @@ function HardcoreModal({ lyric, players, closeModal, setClearAnswers }) {
             })}
           </div>
         </div>
-        {handleResultsLogic(lyric)}
         <button onClick={handleNextClick} className="next-lyric">
           Next Lyric
         </button>

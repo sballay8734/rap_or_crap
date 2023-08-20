@@ -40,7 +40,7 @@ function MultiAnswerSelect({ player, clearAnswers, showAnswerButtons }) {
       return "orange-worst"
     } else if (percentageCorrect < 40) {
       return "orange"
-    } else if (percentageCorrect < 50) {
+    } else if (percentageCorrect <= 50) {
       return "yellow"
     } else if (percentageCorrect < 60) {
       return "light-green-worst"

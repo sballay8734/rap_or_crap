@@ -146,8 +146,8 @@ function Hardcore() {
                 </button>
               </form>
             </div>
-            <div className="spacer"></div>
-            <div className="player-list">
+            {/* <div className="spacer"></div> */}
+            <div className={`player-list ${players.length > 0 ? "show" : ""}`}>
               {players.map((player) => {
                 return (
                   <div className="player" key={player.name}>

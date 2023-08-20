@@ -24,6 +24,8 @@
 
 
 NEXT...
+1. Change events to ontouchend etc...
+1. REFRESHING ON MOBILE CAUSES AN ERROR
 1. Media queries for multi-answer screen above 375px and below 340px.
 1. Add player screen needs some love (looks bad)
 1. LOAD SCORES AND USED LYRICS IN handleGameStartFunction()

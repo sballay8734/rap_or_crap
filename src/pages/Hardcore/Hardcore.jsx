@@ -44,7 +44,10 @@ function Hardcore() {
   }
 
   function handleGameStart() {
-    // need to load scores and used lyrics here
+    if (players.length === 0) {
+      return
+    }
+
     handleLyricsUpdate()
     setGameStart(true)
     setGameSetup(false)
@@ -163,8 +166,11 @@ function Hardcore() {
               })}
             </div>
           </div>
-          <button className="begin-button" onClick={handleGameStart}>
-            Begin Game
+          <button
+            className={`begin-button ${players.length === 0 ? "modify" : ""}`}
+            onClick={handleGameStart}
+          >
+            {players.length === 0 ? "Must add players" : "Begin Game"}
           </button>
         </>
       ) : (
